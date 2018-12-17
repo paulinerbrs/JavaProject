@@ -17,6 +17,7 @@ public class Constantes {
     public static final String MDP = "adm";
     public static final String REQUETE_TOUS = "SELECT * from PROGRAMMEUR";
     public static final String REQUETE_UNIQUE = "SELECT * from PROGRAMMEUR WHERE matricule = ?";
+    public static final String UPDATE_UNIQUE = "UPDATE PROGRAMMEUR SET nom = ? WHERE matricule = ?";
     public static final String DELETE_UNIQUE = "DELETE * from PROGRAMMEUR WHERE matricule = ?";
-
+// UPDATE table SET nom_colonne_1 = 'nouvelle valeur' WHERE condition
 }
