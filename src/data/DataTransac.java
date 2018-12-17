@@ -138,16 +138,16 @@ public class DataTransac {
     public void modifierProgrammeur(String matricule, String nom, String prenom, String adresse, String pseudo, String responsable, String hobby, String date_naiss, String date_emb){
         try {
             pstmt = dbConn.prepareStatement(Constantes.UPDATE_UNIQUE);
-            pstmt.setString(1, matricule);
-            pstmt.setString(2, nom);
-            pstmt.setString(3, prenom);
-            pstmt.setString(4, adresse);
-            pstmt.setString(5, pseudo);
-            pstmt.setString(6, responsable);
-            pstmt.setString(7, hobby);
-            pstmt.setString(8, date_naiss);
-            pstmt.setString(9, date_emb);
-            rs = pstmt.executeQuery();
+            pstmt.setString(1, nom);
+            pstmt.setString(2, prenom);
+            pstmt.setString(3, adresse);
+            pstmt.setString(4, pseudo);
+            pstmt.setString(5, responsable);
+            pstmt.setString(6, hobby);
+            pstmt.setString(7, date_naiss);
+            pstmt.setString(8, date_emb);            
+            pstmt.setString(9, matricule);
+            pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DataTransac.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -157,7 +157,7 @@ public class DataTransac {
         try {
             pstmt = dbConn.prepareStatement(Constantes.DELETE_UNIQUE);
             pstmt.setString(1, matricule);
-            rs = pstmt.executeQuery();
+            pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DataTransac.class.getName()).log(Level.SEVERE, null, ex);
         }

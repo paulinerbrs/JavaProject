@@ -15,9 +15,9 @@ public class Constantes {
     public static final String URL = "jdbc:derby://localhost:1527/LSI_L3_JAVA";
     public static final String USER = "adm";
     public static final String MDP = "adm";
-    public static final String REQUETE_TOUS = "SELECT * from PROGRAMMEUR";
-    public static final String REQUETE_UNIQUE = "SELECT * from PROGRAMMEUR WHERE matricule = ?";
-    public static final String UPDATE_UNIQUE = "UPDATE PROGRAMMEUR SET nom = ? WHERE matricule = ?";
-    public static final String DELETE_UNIQUE = "DELETE * from PROGRAMMEUR WHERE matricule = ?";
-// UPDATE table SET nom_colonne_1 = 'nouvelle valeur' WHERE condition
+    public static final String REQUETE_TOUS = "SELECT * FROM PROGRAMMEUR";
+    public static final String REQUETE_UNIQUE = "SELECT * FROM PROGRAMMEUR WHERE MATRICULE = ?";
+    public static final String UPDATE_UNIQUE = "UPDATE PROGRAMMEUR SET NOM = ?, PRENOM = ?, ADRESSE = ?, PSEUDO = ?, RESPOONSABLE = ?, HOBBY = ?, DATE_NAISS = ?, DATE_EMB = ? WHERE MATRICULE = ?";
+    public static final String DELETE_UNIQUE = "DELETE * FROM PROGRAMMEUR WHERE MATRICULE = ?";
+
 }
