@@ -5,6 +5,8 @@
  */
 package data;
 
+import java.sql.Date;
+
 /**
  *
  * @author Jacques
@@ -18,8 +20,8 @@ public class ProgrammeurBean {
     private String pseudo;
     private String responsable;  
     private String hobby;
-    private String date_naiss; // a modifier créer le type Date
-    private String date_emb;
+    private Date date_naiss; // a modifier créer le type Date
+    private Date date_emb;
     
     public ProgrammeurBean() {
     }
@@ -88,19 +90,19 @@ public class ProgrammeurBean {
         this.hobby = hobby;
     }
 
-    public String getDate_naiss() {
+    public Date getDate_naiss() {
         return date_naiss;
     }
 
-    public void setDate_naiss(String date_naiss) {
+    public void setDate_naiss(Date date_naiss) {
         this.date_naiss = date_naiss;
     }
 
-    public String getDate_emb() {
+    public Date getDate_emb() {
         return date_emb;
     }
 
-    public void setDate_emb(String date_emb) {
+    public void setDate_emb(Date date_emb) {
         this.date_emb = date_emb;
     }
 
