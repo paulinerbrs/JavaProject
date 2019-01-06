@@ -6,6 +6,7 @@
 package data;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,6 +29,7 @@ public class DataTransac {
     private ResultSet rs;
     private ArrayList<ProgrammeurBean> listeProgrammeurs;
     private ProgrammeurBean prog;
+    private int erreur;
 
     /**
      * Le constructeur permet d'initialiser la connexion
@@ -42,7 +44,7 @@ public class DataTransac {
     }
 
     /**
-     * Lance la récupère passée en paramètre et retourne le ResultSet
+     * Lance la requête passée en paramètre et retourne le ResultSet
      * correspondant à cette requête
      *
      * @param req La requête SQL que l'on souhaite exécuter
@@ -65,7 +67,7 @@ public class DataTransac {
      * @return listeProgrammeurs Une variable de type ArryList
      */
     public ArrayList getProgrammeurs() {
-        rs = this.getResultSet(Constantes.REQUETE_TOUS);
+        rs = this.getResultSet(Constantes.SELECT_ALL);
         listeProgrammeurs = new ArrayList<>();
         try {
             while (rs.next()) {
@@ -77,8 +79,8 @@ public class DataTransac {
                 prog.setPseudo(rs.getString("PSEUDO"));
                 prog.setResponsable(rs.getString("RESPONSABLE"));
                 prog.setHobby(rs.getString("HOBBY"));
-                prog.setDate_naiss(rs.getString("DATE_NAISS"));
-                prog.setDate_emb(rs.getString("DATE_EMB"));
+                prog.setDate_naiss(rs.getDate("DATE_NAISS"));
+                prog.setDate_emb(rs.getDate("DATE_EMB"));
                 listeProgrammeurs.add(prog);
             }
         } catch (SQLException sqle) {
@@ -98,7 +100,7 @@ public class DataTransac {
      */
     public ProgrammeurBean getProgrammeur(String matricule) {
         try {
-            pstmt = dbConn.prepareStatement(Constantes.REQUETE_UNIQUE);
+            pstmt = dbConn.prepareStatement(Constantes.SELECT_UNIQUE);
             pstmt.setString(1, matricule);
             rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -110,8 +112,8 @@ public class DataTransac {
                 prog.setPseudo(rs.getString("PSEUDO"));
                 prog.setResponsable(rs.getString("RESPONSABLE"));
                 prog.setHobby(rs.getString("HOBBY"));
-                prog.setDate_naiss(rs.getString("DATE_NAISS"));
-                prog.setDate_emb(rs.getString("DATE_EMB"));
+                prog.setDate_naiss(rs.getDate("DATE_NAISS"));
+                prog.setDate_emb(rs.getDate("DATE_EMB"));
             }
         } catch (SQLException sqle) {
             Logger.getLogger(DataTransac.class.getName()).log(Level.SEVERE, null, sqle);
@@ -135,8 +137,10 @@ public class DataTransac {
         return listeProg;
     }
     
-    public void modifierProgrammeur(String matricule, String nom, String prenom, String adresse, String pseudo, String responsable, String hobby, String date_naiss, String date_emb){
+    public int modifierProgrammeur(String matricule, String nom, String prenom, String adresse, String pseudo, String responsable, String hobby, String Jdate_naiss, String Mdate_naiss, String Adate_naiss, String Jdate_emb, String Mdate_emb, String Adate_emb){
         try {
+            Date date_naiss = new Date(Integer.parseInt(Jdate_naiss), Integer.parseInt(Mdate_naiss), Integer.parseInt(Adate_naiss));
+            Date date_emb = new Date(Integer.parseInt(Jdate_emb), Integer.parseInt(Mdate_emb), Integer.parseInt(Adate_emb));
             pstmt = dbConn.prepareStatement(Constantes.UPDATE_UNIQUE);
             pstmt.setString(1, nom);
             pstmt.setString(2, prenom);
@@ -144,23 +148,52 @@ public class DataTransac {
             pstmt.setString(4, pseudo);
             pstmt.setString(5, responsable);
             pstmt.setString(6, hobby);
-            pstmt.setString(7, date_naiss);
-            pstmt.setString(8, date_emb);            
+            pstmt.setDate(7, date_naiss);
+            pstmt.setDate(8, date_emb);            
             pstmt.setString(9, matricule);
             pstmt.executeUpdate();
+            erreur = 0;
         } catch (SQLException ex) {
+            erreur= 1 ;
             Logger.getLogger(DataTransac.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return erreur;
     }
     
-    public void supprimerProgrammeur(String matricule){
+    public int supprimerProgrammeur(String matricule){
         try {
             pstmt = dbConn.prepareStatement(Constantes.DELETE_UNIQUE);
             pstmt.setString(1, matricule);
             pstmt.executeUpdate();
+            erreur = 0;
         } catch (SQLException ex) {
+            erreur = 1;
             Logger.getLogger(DataTransac.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return erreur;
+    }
+    
+    public int ajouterProgrammeur(String matricule, String nom, String prenom, String adresse, String pseudo, String responsable, String hobby, String Jdate_naiss, String Mdate_naiss, String Adate_naiss, String Jdate_emb, String Mdate_emb, String Adate_emb){
+        try {
+            Date date_naiss = new Date(Integer.parseInt(Jdate_naiss), Integer.parseInt(Mdate_naiss), Integer.parseInt(Adate_naiss));
+            Date date_emb = new Date(Integer.parseInt(Jdate_emb), Integer.parseInt(Mdate_emb), Integer.parseInt(Adate_emb));
+            pstmt = dbConn.prepareStatement(Constantes.INSERT_UNIQUE);          
+            pstmt.setString(1, matricule);
+            pstmt.setString(2, nom);
+            pstmt.setString(3, prenom);
+            pstmt.setString(4, adresse);
+            pstmt.setString(5, pseudo);
+            pstmt.setString(6, responsable);
+            pstmt.setString(7, hobby);
+            pstmt.setDate(8, date_naiss);
+            pstmt.setDate(9, date_emb);  
+            pstmt.executeUpdate();
+            erreur = 0;
+        } catch (SQLException ex) {
+            erreur = 1;
+            Logger.getLogger(DataTransac.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return erreur;
     }
 
     /**
