@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package myutil;
 
 /**
- *
- * @author Jacques
+ * Classe rassemblant toutes les constantes utiisées dans le programme
+ * @author Daouya-Pauline
  */
 public class Constantes {
-
     public static final String OCCUPATION = "Programmeur";
     public static final String URL = "jdbc:derby://localhost:1527/LSI_L3_JAVA";
     public static final String USER = "adm";
