@@ -3,7 +3,7 @@ package data;
 import java.sql.Date;
 
 /**
- * Classe de gestion de programmeurs
+ * Classe gérant less programmeurs
  * @author Daouya-Pauline
  */
 public class ProgrammeurBean{

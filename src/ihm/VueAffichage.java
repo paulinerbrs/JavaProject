@@ -1,23 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm;
 
-import data.DataTransac;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
- *
- * @author Jacques
+ * Classe gérant la vue de l'affichage des programmeurs 
+ * @author Daouya-Pauline
  */
 public class VueAffichage extends GestionVueAbstraite{
     private JScrollPane scroll;
 
+    /**
+     * Met en place le panel affichant les programmeurs
+     */
     @Override
     protected void display() {
         paneAfficher = new JPanel();
@@ -27,7 +24,10 @@ public class VueAffichage extends GestionVueAbstraite{
         paneAfficher.add(scroll);
         this.setContentPane(paneAfficher);
     }
-
+    /**
+     * Gère les évènements engendré par l'utilisateur
+     * @param event Evènement généré par l'utilisateur
+     */
     @Override
     public void actionPerformed(ActionEvent event) {
         /*if(event.getSource() == itemTous){
@@ -46,6 +46,4 @@ public class VueAffichage extends GestionVueAbstraite{
             dt.fermerRessources();   
         }*/
     }
-
 }
-

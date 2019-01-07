@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package data;
 
 import java.sql.Connection;
@@ -17,11 +12,10 @@ import java.util.logging.Logger;
 import myutil.Constantes;
 
 /**
- *
- * @author Jacques
+ * Classe contenant les méthodes de transaction avec la base de données
+ * @author Daouya-Pauline
  */
 public class DataTransac implements ActionsBD{
-
     private Connection dbConn;
     private Statement stmt;
     private PreparedStatement pstmt;
@@ -31,7 +25,7 @@ public class DataTransac implements ActionsBD{
     private int erreur;
 
     /**
-     * Le constructeur permet d'initialiser la connexion
+     * Constructeur initialisant la connexion
      */
     public DataTransac() {
         try {
@@ -42,11 +36,9 @@ public class DataTransac implements ActionsBD{
     }
 
     /**
-     * Lance la requête passée en paramètre et retourne le ResultSet
-     * correspondant à cette requête
-     *
-     * @param req La requête SQL que l'on souhaite exécuter
-     * @return rs Une variable de type ResultSet
+     * Lance la requête passée en paramètre et retourne le ResultSet correspondant à cette requête
+     * @param req   Requête SQL que l'on souhaite exécuter
+     * @return rs, un ResultSet
      */
     @Override
     public ResultSet getResultSet(String req) {
@@ -60,10 +52,9 @@ public class DataTransac implements ActionsBD{
     }
 
     /**
-     * Cette méthode récupère toutes les infos d'un programmeur et retourne une
-     * liste de l'ensemble des programmeurs
-     *
-     * @return listeProgrammeurs Une variable de type ArryList
+     * Récupère toutes les informations d'un programmeur 
+     * et retourne une liste de l'ensemble des programmeurs
+     * @return listeProgrammeurs, une ArrayList contenant de la liste des programmeurs
      */
     @Override
     public ArrayList getProgrammeurs() {
@@ -90,13 +81,11 @@ public class DataTransac implements ActionsBD{
     }
 
     /**
-     * Cette méthode récupère toutes les infos d'un programmeur et retourne ce
-     * programmeur sous la forme d'un Java Bean Cette méthode est utilisée pour
-     * rechercher un progammeur via son matricule
-     *
-     * @param matricule Le matricule saisi par l'utilisateur pour lancer la recherche
-     * @return prog Une variable de type ProgrammeurBean
-     *
+     * Recherche un progammeur via son matricule, 
+     * récupère toutes les informations de ce programmeur
+     * et retourne ce programmeur sous la forme d'un ProgrammeurBean 
+     * @param matricule Matricule saisi par l'utilisateur pour lancer la recherche
+     * @return prog, un ProgrammeurBean
      */
     @Override
     public ProgrammeurBean getProgrammeur(String matricule) {
@@ -123,11 +112,8 @@ public class DataTransac implements ActionsBD{
     }
 
     /**
-     * Cette méthode permet de construire la chaîne de caractères qui sera
-     * affichée lorsqu'on choisit Programmeur - Afficher - Tous
-     *
-     * @return listeProg Une variable de type String
-     *
+     * Construit la chaîne de caractères composée les informations des programmeurs
+     * @return listeProg, la chaîne de caractère regroupant les informations des programmeurs
      */
     @Override
     public String afficherProgrammeurs() {
@@ -139,6 +125,23 @@ public class DataTransac implements ActionsBD{
         return listeProg;
     }
     
+    /**
+     * Modifie les données d'un programmeur
+     * @param matricule Nouveau matricule du programmeur
+     * @param nom   Nouveau nom du programmeur
+     * @param prenom    Nouveau prénom du programmeur
+     * @param adresse    Nouvelle adresse du programmeur
+     * @param pseudo    Nouveau pseudo du programmeur
+     * @param responsable    Nouveau responsable du programmeur
+     * @param hobby    Nouveau hobby du programmeur
+     * @param Jdate_naiss    Nouveau jour de naissance du programmeur
+     * @param Mdate_naiss    Nouveau mois de naissance du programmeur
+     * @param Adate_naiss    Nouvelle année de naissance du programmeur
+     * @param Jdate_emb    Nouveau jour d'embauche du programmeur
+     * @param Mdate_emb    Nouveau mois d'embauche du programmeur
+     * @param Adate_emb    Nouvelle année d'embauche du programmeur
+     * @return erreur, 0 si la modication est réussit et 1 sinon
+     */
     @Override
     public int modifierProgrammeur(String matricule, String nom, String prenom, String adresse, String pseudo, String responsable, String hobby, String Jdate_naiss, String Mdate_naiss, String Adate_naiss, String Jdate_emb, String Mdate_emb, String Adate_emb){
         try {
@@ -163,6 +166,11 @@ public class DataTransac implements ActionsBD{
         return erreur;
     }
     
+    /**
+     * Supprime de la base de données un programmeur identifié par son matricule
+     * @param matricule Matricule permettant d'indentifié le programmeur
+     * @return erreur, 0 si la modication est réussit et 1 sinon
+     */
     @Override
     public int supprimerProgrammeur(String matricule){
         try {
@@ -177,6 +185,23 @@ public class DataTransac implements ActionsBD{
         return erreur;
     }
     
+    /**
+     * Ajoute un programmeur à la base de données
+     * @param matricule Matricule du programmeur
+     * @param nom   Nom du programmeur
+     * @param prenom    Prénom du programmeur
+     * @param adresse    Adresse du programmeur
+     * @param pseudo    Pseudo du programmeur
+     * @param responsable    Responsable du programmeur
+     * @param hobby    Hobby du programmeur
+     * @param Jdate_naiss    Jour de naissance du programmeur
+     * @param Mdate_naiss    Mois de naissance du programmeur
+     * @param Adate_naiss    Année de naissance du programmeur
+     * @param Jdate_emb    Jour d'embauche du programmeur
+     * @param Mdate_emb    Mois d'embauche du programmeur
+     * @param Adate_emb    Année d'embauche du programmeur
+     * @return erreur, 0 si la modication est réussit et 1 sinon
+     */
     @Override
     public int ajouterProgrammeur(String matricule, String nom, String prenom, String adresse, String pseudo, String responsable, String hobby, String Jdate_naiss, String Mdate_naiss, String Adate_naiss, String Jdate_emb, String Mdate_emb, String Adate_emb){
         try {
@@ -202,8 +227,7 @@ public class DataTransac implements ActionsBD{
     }
 
     /**
-     * Cette méthode permet de libérer les ressources liées à la base de données
-     * *
+     * Libère les ressources liées à la base de données
      */
     @Override
     public void fermerRessources() {
@@ -222,5 +246,4 @@ public class DataTransac implements ActionsBD{
             }
         }
     }
-
 }

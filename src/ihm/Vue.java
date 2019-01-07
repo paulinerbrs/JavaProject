@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm;
 
 import java.awt.event.ActionEvent;
@@ -21,23 +16,18 @@ import java.sql.Date;
 import java.util.Calendar;
 
 /**
- *
- * @author Jacques
+ * Classe gérant la vue de la mise à jour des données des programmeurs 
+ * @author Daouya-Pauline
  */
-public class Vue extends GestionVueAbstraite {
-    // Déclaration des attributs
-    // L'initialisation se fera "en local" dans des méthodes        
+public class Vue extends GestionVueAbstraite {        
     private JButton btnAfficherTous;
     private JScrollPane scroll;
     private ProgrammeurBean progrBean;
-    
-    //Panel .................................
     private JButton btnValiderEcranAjouter;
     private JButton btnValiderEcranSupprimer;
     private JButton btnValiderEcranModifier;
     private int gestionErreur;
     
-    //form ajout prog
     private JButton btnRechercher;
     private JButton btnReinitialiser;
     private JButton btnAnnuler;
@@ -64,57 +54,12 @@ public class Vue extends GestionVueAbstraite {
     private JComboBox comboMoisDate_emb;
     private JTextField champAnneeDate_emb;
     
+    /**
+     * Met en place le panel permettant de mettre à jour les données des programmeurs
+     */
     @Override
     public void display(){
-        
-    }
-
-    public void displayAfficherTous(){        
-        paneAfficher = new JPanel(); // Création d'un panel pour gérer les widgets
-        zoneAffichageProgrammeurs = new JTextArea();
-        zoneAffichageProgrammeurs = new JTextArea(10, 50);
-        scroll = new JScrollPane(zoneAffichageProgrammeurs);
-        paneAfficher.add(scroll);
-    }
-
-    public void displayModifier(){
-        btnRechercher = new JButton("Rechercher");
-        btnReinitialiser = new JButton("Réinitialiser");
-        btnValiderEcranModifier = new JButton("Valider");
-        btnAnnuler = new JButton("Annuler");
-        
-        paneGenerique.add(btnRechercher);
-        paneGenerique.add(btnReinitialiser);
-        paneGenerique.add(btnValiderEcranModifier);
-        paneGenerique.add(btnAnnuler);
-       
-        btnRechercher.addActionListener(this);
-        btnAnnuler.addActionListener(this);
-        
-        btnReinitialiser.setEnabled(false);
-        btnValiderEcranModifier.setEnabled(false);
-    }
-
-    public void displayModifierFinal(){
-        btnRechercher = new JButton("Rechercher");
-        btnReinitialiser = new JButton("Réinitialiser");
-        btnValiderEcranModifier = new JButton("Valider");
-        btnAnnuler = new JButton("Annuler");
-        
-        paneGenerique.add(btnRechercher);
-        paneGenerique.add(btnReinitialiser);
-        paneGenerique.add(btnValiderEcranModifier);
-        paneGenerique.add(btnAnnuler);
-       
-        btnRechercher.addActionListener(this);
-        btnValiderEcranModifier.addActionListener(this);
-        btnReinitialiser.setEnabled(false);
-        btnAnnuler.addActionListener(this);
-    }
-
-    public void displayGenerique(){        
         paneGenerique = new JPanel(); 
-
         labelMatricule = new JLabel("Matricule");
         champMatricule = new JTextField();
         champMatricule.setColumns(10);
@@ -149,7 +94,6 @@ public class Vue extends GestionVueAbstraite {
         comboMoisDate_emb = new JComboBox(mois);
         champAnneeDate_emb = new JTextField();
         champAnneeDate_emb.setColumns(10);
-       
         paneGenerique.add(labelMatricule);
         paneGenerique.add(champMatricule);
         paneGenerique.add(labelNom);
@@ -172,28 +116,83 @@ public class Vue extends GestionVueAbstraite {
         paneGenerique.add(champJourDate_emb);
         paneGenerique.add(comboMoisDate_emb);
         paneGenerique.add(champAnneeDate_emb);
-        
         this.setLayout(new BorderLayout());
     }
+
+    /**
+     * Met en place le panel permettant d'afficher les programmeurs
+     */
+    public void displayAfficherTous(){        
+        paneAfficher = new JPanel(); 
+        zoneAffichageProgrammeurs = new JTextArea();
+        zoneAffichageProgrammeurs = new JTextArea(10, 50);
+        scroll = new JScrollPane(zoneAffichageProgrammeurs);
+        paneAfficher.add(scroll);
+    }
+
+    /**
+     * Met en place le panel permettant de modifier les données des programmeurs
+     */
+    public void displayModifier(){
+        btnRechercher = new JButton("Rechercher");
+        btnReinitialiser = new JButton("Réinitialiser");
+        btnValiderEcranModifier = new JButton("Valider");
+        btnAnnuler = new JButton("Annuler");
+        paneGenerique.add(btnRechercher);
+        paneGenerique.add(btnReinitialiser);
+        paneGenerique.add(btnValiderEcranModifier);
+        paneGenerique.add(btnAnnuler);
+        btnRechercher.addActionListener(this);
+        btnAnnuler.addActionListener(this);
+        btnReinitialiser.setEnabled(false);
+        btnValiderEcranModifier.setEnabled(false);
+    }
+
+    /**
+     * Met en place le panel permettant d'enregistrer les données des programmeurs mises à jour
+     */
+    public void displayModifierFinal(){
+        btnRechercher = new JButton("Rechercher");
+        btnReinitialiser = new JButton("Réinitialiser");
+        btnValiderEcranModifier = new JButton("Valider");
+        btnAnnuler = new JButton("Annuler");
+        paneGenerique.add(btnRechercher);
+        paneGenerique.add(btnReinitialiser);
+        paneGenerique.add(btnValiderEcranModifier);
+        paneGenerique.add(btnAnnuler);
+        btnRechercher.addActionListener(this);
+        btnValiderEcranModifier.addActionListener(this);
+        btnReinitialiser.setEnabled(false);
+        btnAnnuler.addActionListener(this);
+    }
+
+    /**
+     * Met en place le panel permettant de mettre à jour les données des programmeurs
+     */
+    public void displayGenerique(){        
+    }
     
+    /**
+     * Met en place le panel permettant d'ajouter des programmeurs
+     */
     public void displayAjouter(){        
         btnRechercher = new JButton("Rechercher");
         btnReinitialiser = new JButton("Réinitialiser");
         btnValiderEcranAjouter = new JButton("Valider");
         btnAnnuler = new JButton("Annuler");
-       
         paneGenerique.add(btnRechercher);
         paneGenerique.add(btnReinitialiser);
         paneGenerique.add(btnValiderEcranAjouter);
         paneGenerique.add(btnAnnuler);
-       
         btnRechercher.setEnabled(false);
-        
         btnReinitialiser.addActionListener(this);
         btnValiderEcranAjouter.addActionListener(this);
         btnAnnuler.addActionListener(this);        
     }
     
+    /**
+     * Met en place le panel permettant de supprimer les données des programmeurs
+     */
      public void displaySupprimer(){     
         btnRechercher = new JButton("Rechercher");
         btnReinitialiser = new JButton("Réinitialiser");
@@ -209,7 +208,6 @@ public class Vue extends GestionVueAbstraite {
         paneGenerique.add(btnReinitialiser, BorderLayout.SOUTH);
         paneGenerique.add(btnValiderEcranSupprimer, BorderLayout.SOUTH);
         paneGenerique.add(btnAnnuler, BorderLayout.SOUTH);
-       
         labelNom.setEnabled(false);
         champNom.setEnabled(false);
         labelPrenom.setEnabled(false);
@@ -232,11 +230,14 @@ public class Vue extends GestionVueAbstraite {
         champAnneeDate_emb.setEnabled(false);
         btnRechercher.setEnabled(false);
         btnReinitialiser.setEnabled(false);
-        
         btnValiderEcranSupprimer.addActionListener(this);
         btnAnnuler.addActionListener(this);
     }
     
+    /**
+     * Gère les évènements engendré par l'utilisateur
+     * @param event Evènement généré par l'utilisateur
+     */
     @Override
     public void actionPerformed(ActionEvent event){
         if(event.getSource() == itemTous){
@@ -246,7 +247,6 @@ public class Vue extends GestionVueAbstraite {
             this.setContentPane(paneAfficher);
             this.revalidate();
             this.repaint();
-            
             //récupération des données 
             dt = new DataTransac();
             contenuTextArea = dt.afficherProgrammeurs();
@@ -254,21 +254,21 @@ public class Vue extends GestionVueAbstraite {
             dt.fermerRessources();   
         } else if (event.getSource() == itemModifier){
             getContentPane().removeAll();
-            this.displayGenerique();
+            this.display();
             this.displayModifier();
             this.setContentPane(paneGenerique);
             this.revalidate();
             this.repaint();
         } else if (event.getSource() == itemSupprimer){
             getContentPane().removeAll();
-            this.displayGenerique();
+            this.display();
             this.displaySupprimer();
             this.setContentPane(paneGenerique);
             this.revalidate();
             this.repaint();  
         } else if (event.getSource() == itemAjouter || event.getSource() == btnReinitialiser ){
             getContentPane().removeAll();
-            this.displayGenerique();
+            this.display();
             this.displayAjouter();
             this.setContentPane(paneGenerique);
             this.revalidate();
@@ -290,12 +290,11 @@ public class Vue extends GestionVueAbstraite {
                 JOptionPane.showMessageDialog(this, "Programmeur introuvable", "Echec", JOptionPane.ERROR_MESSAGE);
             } else {                
                 getContentPane().removeAll();
-                this.displayGenerique();
+                this.display();
                 this.displayModifierFinal();
                 this.setContentPane(paneGenerique);
                 this.revalidate();
                 this.repaint();
-                
                 this.champMatricule.setText(progrBean.getMatricule());
                 this.champNom.setText(progrBean.getNom());
                 this.champPrenom.setText(progrBean.getPrenom());
