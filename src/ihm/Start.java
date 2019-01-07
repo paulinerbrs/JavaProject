@@ -14,7 +14,7 @@ package ihm;
 public class Start {
 
     public static void main(String[] args) {
-        VueDaouya ihm = new VueDaouya();
+        Vue ihm = new Vue();
         ihm.init();
     }
 

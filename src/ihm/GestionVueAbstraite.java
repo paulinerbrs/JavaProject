@@ -11,7 +11,9 @@ import java.awt.event.ActionEvent;
  *
  * @author pauli
  */
-public abstract class GestionVueAbstraite {
+public abstract class GestionVueAbstraite { // public ou protected     //non instantiable
     public abstract void init();
     public abstract void actionPerformed(ActionEvent event);
+    
+    
 }

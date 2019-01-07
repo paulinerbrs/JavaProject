@@ -6,7 +6,6 @@
 package data;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -138,8 +137,8 @@ public class DataTransac implements ActionsBD{
     
     public int modifierProgrammeur(String matricule, String nom, String prenom, String adresse, String pseudo, String responsable, String hobby, String Jdate_naiss, String Mdate_naiss, String Adate_naiss, String Jdate_emb, String Mdate_emb, String Adate_emb){
         try {
-            Date date_naiss = new Date(Integer.parseInt(Jdate_naiss), Integer.parseInt(Mdate_naiss), Integer.parseInt(Adate_naiss));
-            Date date_emb = new Date(Integer.parseInt(Jdate_emb), Integer.parseInt(Mdate_emb), Integer.parseInt(Adate_emb));
+            String date_naiss = Adate_naiss + "-" + Mdate_naiss + "-" + Jdate_naiss;
+            String date_emb = Adate_emb + "-" + Mdate_emb + "-" + Jdate_emb;
             pstmt = dbConn.prepareStatement(Constantes.UPDATE_UNIQUE);
             pstmt.setString(1, nom);
             pstmt.setString(2, prenom);
@@ -147,8 +146,8 @@ public class DataTransac implements ActionsBD{
             pstmt.setString(4, pseudo);
             pstmt.setString(5, responsable);
             pstmt.setString(6, hobby);
-            pstmt.setDate(7, date_naiss);
-            pstmt.setDate(8, date_emb);            
+            pstmt.setString(7, date_naiss);
+            pstmt.setString(8, date_emb);            
             pstmt.setString(9, matricule);
             pstmt.executeUpdate();
             erreur = 0;
@@ -174,8 +173,8 @@ public class DataTransac implements ActionsBD{
     
     public int ajouterProgrammeur(String matricule, String nom, String prenom, String adresse, String pseudo, String responsable, String hobby, String Jdate_naiss, String Mdate_naiss, String Adate_naiss, String Jdate_emb, String Mdate_emb, String Adate_emb){
         try {
-            Date date_naiss = new Date(Integer.parseInt(Jdate_naiss), Integer.parseInt(Mdate_naiss), Integer.parseInt(Adate_naiss));
-            Date date_emb = new Date(Integer.parseInt(Jdate_emb), Integer.parseInt(Mdate_emb), Integer.parseInt(Adate_emb));
+            String date_naiss = Adate_naiss + "-" + Mdate_naiss + "-" + Jdate_naiss;
+            String date_emb = Adate_emb + "-" + Mdate_emb + "-" + Jdate_emb;
             pstmt = dbConn.prepareStatement(Constantes.INSERT_UNIQUE);          
             pstmt.setString(1, matricule);
             pstmt.setString(2, nom);
@@ -184,8 +183,8 @@ public class DataTransac implements ActionsBD{
             pstmt.setString(5, pseudo);
             pstmt.setString(6, responsable);
             pstmt.setString(7, hobby);
-            pstmt.setDate(8, date_naiss);
-            pstmt.setDate(9, date_emb);  
+            pstmt.setString(8, date_naiss);
+            pstmt.setString(9, date_emb);  
             pstmt.executeUpdate();
             erreur = 0;
         } catch (SQLException ex) {
