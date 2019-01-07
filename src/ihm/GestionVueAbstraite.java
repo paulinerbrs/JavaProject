@@ -19,8 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 /**
- *
- * @author pauli
+ * Classe abstraite contenant la signature des méthodes liées à la gestion de la vue
+ * @author Daouya-Pauline
  */
 public abstract class GestionVueAbstraite extends JFrame implements ActionListener{ // public ou protected     //non instantiable
     protected JMenuBar menuBar;
@@ -43,6 +43,9 @@ public abstract class GestionVueAbstraite extends JFrame implements ActionListen
     VueAffichage vueA;
     Vue vueD;
     
+    /**
+     * Initialise le menu de l'application
+     */
     protected void init(){ 
         menuBar = new JMenuBar();
         menuProgrammeur = new JMenu("Programmeur");
@@ -85,6 +88,9 @@ public abstract class GestionVueAbstraite extends JFrame implements ActionListen
         }
     }*/
     
+    /**
+     * Méthode abstraite affichant le panel désiré
+     */
     protected abstract void display();
     
     /*@Override

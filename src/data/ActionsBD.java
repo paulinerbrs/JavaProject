@@ -3,17 +3,11 @@ package data;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author pauli
+ * Interface contenant les signatures des méthodes de transaction avec la base de données
+ * @author Daouya-Pauline
  */
-public interface ActionsBD {
+public interface ActionsBD{
     public ResultSet getResultSet(String req);
     public ArrayList getProgrammeurs();
     public ProgrammeurBean getProgrammeur(String matricule);
