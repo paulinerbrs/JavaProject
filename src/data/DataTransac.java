@@ -21,7 +21,7 @@ import myutil.Constantes;
  *
  * @author Jacques
  */
-public class DataTransac {
+public class DataTransac implements ActionsBD{
 
     private Connection dbConn;
     private Statement stmt;
@@ -33,7 +33,6 @@ public class DataTransac {
 
     /**
      * Le constructeur permet d'initialiser la connexion
-     *
      */
     public DataTransac() {
         try {

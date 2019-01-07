@@ -5,10 +5,13 @@
  */
 package ihm;
 
+import java.awt.event.ActionEvent;
+
 /**
  *
  * @author pauli
  */
 public abstract class GestionVueAbstraite {
-    
+    public abstract void init();
+    public abstract void actionPerformed(ActionEvent event);
 }

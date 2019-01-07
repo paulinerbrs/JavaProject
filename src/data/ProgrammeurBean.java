@@ -20,7 +20,7 @@ public class ProgrammeurBean {
     private String pseudo;
     private String responsable;  
     private String hobby;
-    private Date date_naiss; // a modifier créer le type Date
+    private Date date_naiss;
     private Date date_emb;
     
     public ProgrammeurBean() {
