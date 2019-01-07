@@ -6,7 +6,7 @@ import java.sql.Date;
  * Classe de gestion de programmeurs
  * @author Daouya-Pauline
  */
-public class ProgrammeurBean {
+public class ProgrammeurBean{
     private String matricule;
     private String nom;
     private String prenom;
@@ -25,7 +25,7 @@ public class ProgrammeurBean {
      * @return une chaîne de caractère composée des informations du ProgrammeurBean
      */
     @Override
-    public String toString() {
+    public String toString(){
         return this.getMatricule() + " " + this.getNom() + " " + this.getPrenom() + " " 
             + this.getAdresse() + " " + this.getPseudo() + " " + this.getResponsable() + " " 
             + this.getHobby() + " " + this.getDate_naiss() + " " + this.getDate_emb() + "\n";
@@ -35,7 +35,7 @@ public class ProgrammeurBean {
      * Récupère le matricule du ProgrammeurBean
      * @return matricule, le matricule du ProgrammeurBean
      */
-    public String getMatricule() {
+    public String getMatricule(){
         return matricule;
     }
 
@@ -43,7 +43,7 @@ public class ProgrammeurBean {
      * Affecte un matricule au ProgrammeurBean
      * @param matricule  Matricule à affecter au ProgrammeurBean
      */
-    public void setMatricule(String matricule) {
+    public void setMatricule(String matricule){
         this.matricule = matricule;
     }
     
@@ -51,7 +51,7 @@ public class ProgrammeurBean {
      * Récupère le nom du ProgrammeurBean
      * @return nom, le nom du ProgrammeurBean
      */
-    public String getNom() {
+    public String getNom(){
         return nom;
     }
 
@@ -59,7 +59,7 @@ public class ProgrammeurBean {
      * Affecte un nom au ProgrammeurBean
      * @param nom  Nom à affecter au ProgrammeurBean
      */
-    public void setNom(String nom) {
+    public void setNom(String nom){
         this.nom = nom;
     }
 
@@ -67,7 +67,7 @@ public class ProgrammeurBean {
      * Récupère le prénom du ProgrammeurBean
      * @return prenom, le prénom du ProgrammeurBean
      */
-    public String getPrenom() {
+    public String getPrenom(){
         return prenom;
     }
 
@@ -75,7 +75,7 @@ public class ProgrammeurBean {
      * Affecte un prénom au ProgrammeurBean
      * @param prenom  Prénom à affecter au ProgrammeurBean
      */
-    public void setPrenom(String prenom) {
+    public void setPrenom(String prenom){
         this.prenom = prenom;
     }
 
@@ -83,7 +83,7 @@ public class ProgrammeurBean {
      * Récupère le pseudo du ProgrammeurBean
      * @return pseudo, le pseudo du ProgrammeurBean
      */
-    public String getPseudo() {
+    public String getPseudo(){
         return pseudo;
     }
     
@@ -91,7 +91,7 @@ public class ProgrammeurBean {
      * Affecte un pseudo au ProgrammeurBean
      * @param pseudo  Pseudo à affecter au ProgrammeurBean
      */
-    public void setPseudo(String pseudo) {
+    public void setPseudo(String pseudo){
         this.pseudo = pseudo;
     }
  
@@ -99,7 +99,7 @@ public class ProgrammeurBean {
      * Récupère l'adresse du ProgrammeurBean
      * @return adresse, l'adresse du ProgrammeurBean
      */
-    public String getAdresse() {
+    public String getAdresse(){
         return adresse;
     }
 
@@ -107,7 +107,7 @@ public class ProgrammeurBean {
      * Affecte une adresse au ProgrammeurBean
      * @param adresse  Adresse à affecter au ProgrammeurBean
      */
-    public void setAdresse(String adresse) {
+    public void setAdresse(String adresse){
         this.adresse = adresse;
     }
 
@@ -115,7 +115,7 @@ public class ProgrammeurBean {
      * Récupère le responsable du ProgrammeurBean
      * @return responsable, le responsable du ProgrammeurBean
      */
-    public String getResponsable() {
+    public String getResponsable(){
         return responsable;
     }
 
@@ -123,7 +123,7 @@ public class ProgrammeurBean {
      * Affecte un responsable au ProgrammeurBean
      * @param responsable  Responsable à affecter au ProgrammeurBean
      */
-    public void setResponsable(String responsable) {
+    public void setResponsable(String responsable){
         this.responsable = responsable;
     }
 
@@ -131,7 +131,7 @@ public class ProgrammeurBean {
      * Récupère le hobby du ProgrammeurBean
      * @return hobby, le hobby du ProgrammeurBean
      */
-    public String getHobby() {
+    public String getHobby(){
         return hobby;
     }
 
@@ -139,7 +139,7 @@ public class ProgrammeurBean {
      * Affecte un hobby au ProgrammeurBean
      * @param hobby  Hobby à affecter au ProgrammeurBean
      */
-    public void setHobby(String hobby) {
+    public void setHobby(String hobby){
         this.hobby = hobby;
     }
 
@@ -147,7 +147,7 @@ public class ProgrammeurBean {
      * Récupère la date de naissance du ProgrammeurBean
      * @return date_naiss, la date de naissance du ProgrammeurBean
      */
-    public Date getDate_naiss() {
+    public Date getDate_naiss(){
         return date_naiss;
     }
 
@@ -155,7 +155,7 @@ public class ProgrammeurBean {
      * Affecte une date de naissance au ProgrammeurBean
      * @param date_naiss  Date de naissance à affecter au programmeurBean
      */
-    public void setDate_naiss(Date date_naiss) {
+    public void setDate_naiss(Date date_naiss){
         this.date_naiss = date_naiss;
     }
 
@@ -163,7 +163,7 @@ public class ProgrammeurBean {
      * Récupère la date d'embauche du ProgrammeurBean
      * @return date_emb, la date d'embauche du ProgrammeurBean
      */
-    public Date getDate_emb() {
+    public Date getDate_emb(){
         return date_emb;
     }
 
@@ -171,7 +171,7 @@ public class ProgrammeurBean {
      * Affecte une date d'embauche au ProgrammeurBean
      * @param date_emb  Date d'embauche à affecter au programmeurBean
      */
-    public void setDate_emb(Date date_emb) {
+    public void setDate_emb(Date date_emb){
         this.date_emb = date_emb;
     }
 }

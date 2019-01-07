@@ -4,7 +4,7 @@ package myutil;
  * Classe rassemblant toutes les constantes utiisées dans le programme
  * @author Daouya-Pauline
  */
-public class Constantes {
+public class Constantes{
     public static final String OCCUPATION = "Programmeur";
     public static final String URL = "jdbc:derby://localhost:1527/LSI_L3_JAVA";
     public static final String USER = "adm";
@@ -14,5 +14,4 @@ public class Constantes {
     public static final String UPDATE_UNIQUE = "UPDATE PROGRAMMEUR SET NOM = ?, PRENOM = ?, ADRESSE = ?, PSEUDO = ?, RESPONSABLE = ?, HOBBY = ?, DATE_NAISS = ?, DATE_EMB = ? WHERE MATRICULE = ?";
     public static final String DELETE_UNIQUE = "DELETE FROM PROGRAMMEUR WHERE MATRICULE = ?";
     public static final String INSERT_UNIQUE = "INSERT INTO PROGRAMMEUR (MATRICULE, NOM, PRENOM, ADRESSE, PSEUDO, RESPONSABLE, HOBBY, DATE_NAISS, DATE_EMB) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
 }
