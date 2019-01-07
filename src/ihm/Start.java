@@ -14,7 +14,7 @@ package ihm;
 public class Start {
 
     public static void main(String[] args) {
-        Vue ihm = new Vue();
+        GestionVueAbstraite ihm = new Vue();
         ihm.init();
     }
 

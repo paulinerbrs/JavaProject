@@ -6,10 +6,8 @@
 package ihm;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,54 +16,30 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import data.DataTransac;
 import data.ProgrammeurBean;
+import java.awt.BorderLayout;
 import java.sql.Date;
 import java.util.Calendar;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 
 /**
  *
  * @author Jacques
  */
-public class Vue extends JFrame implements ActionListener {
-    private JMenuBar menuBar;
-    private JMenu menuProgrammeur;
-    private JMenu menuAfficher;
-    private JMenu menuAction;
-    private JMenuItem itemModifier;
-    private JMenuItem itemSupprimer;
-    private JMenuItem itemAjouter;
-    private JMenuItem itemTous;
-    private JMenuItem itemQuitter;
-
+public class Vue extends GestionVueAbstraite {
     // Déclaration des attributs
     // L'initialisation se fera "en local" dans des méthodes        
     private JButton btnAfficherTous;
-    private JButton btnRecherche;
-    private JButton btnAjouter;
-    private JLabel labelMatr;
-    private JTextField champMatr;
-    private JTextArea zoneAffichageProgrammeurs;
-    private JPanel pane;
     private JScrollPane scroll;
     private ProgrammeurBean progrBean;
-    private String contenuTextArea;
-    private DataTransac dt;
     
     //Panel .................................
-    private JPanel paneAfficher;
-    private JPanel paneGenerique;
     private JButton btnValiderEcranAjouter;
     private JButton btnValiderEcranSupprimer;
     private JButton btnValiderEcranModifier;
     private int gestionErreur;
-    private int choixPopUp;
     
     //form ajout prog
     private JButton btnRechercher;
     private JButton btnReinitialiser;
-    //private JButton btnValider;
     private JButton btnAnnuler;
     private JLabel labelMatricule;
     private JTextField champMatricule; 
@@ -89,74 +63,12 @@ public class Vue extends JFrame implements ActionListener {
     private JTextField champJourDate_emb;
     private JComboBox comboMoisDate_emb;
     private JTextField champAnneeDate_emb;
-
-    public void init(){ 
-        // Le menu programmeur et action 
-        menuBar = new JMenuBar();
-        menuProgrammeur = new JMenu("Programmeur");
-        menuAfficher = new JMenu("Afficher");
-        menuAction = new JMenu("Action");
-        itemModifier = new JMenuItem("Modifier");
-        itemSupprimer = new JMenuItem("Supprimer");
-        itemAjouter = new JMenuItem("Ajouter");
-        itemTous = new JMenuItem("Tous");
-        itemQuitter = new JMenuItem("Quitter");
-        itemTous.addActionListener(this);
-        itemModifier.addActionListener(this);
-        itemSupprimer.addActionListener(this);
-        itemAjouter.addActionListener(this);
-        itemQuitter.addActionListener(this);
-        this.menuAfficher.add(itemTous);
-        this.menuProgrammeur.add(this.menuAfficher);
-        this.menuProgrammeur.add(itemModifier);  
-        this.menuProgrammeur.add(itemSupprimer);  
-        this.menuProgrammeur.add(itemAjouter);
-        this.menuAction.add(itemQuitter);
-        this.menuBar.add(menuProgrammeur);
-        this.menuBar.add(menuAction);
-        this.setJMenuBar(menuBar);
-                
-        /**
-         * Par défaut, notre frame n'est pas visible
-         * Il faut donc forcer la visibilité à "true"
-         */
-        this.setVisible(true);
-        this.setTitle("GesProg");
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Fermeture fenêtre = arrêt de l'application 
-        this.setBounds(10, 10, 600, 300);
-        this.setResizable(false);
-    }
     
-    public void display(){        
-        pane = new JPanel(); // Création d'un panel pour gérer les widgets
-        btnAfficherTous = new JButton("Afficher Tous");
-        btnRecherche = new JButton("Rechercher");
-        btnAjouter = new JButton("Ajouter");
-        labelMatr = new JLabel("matricule");
-        champMatr = new JTextField();
-        champMatr.setColumns(10);
-        zoneAffichageProgrammeurs = new JTextArea();
-
-        /** Tous les widgets sont placés sur le panel
-         * Et après le panel est "posé" sur notre frame de base
-         */        
-        pane.add(btnAfficherTous);
-        pane.add(labelMatr);
-        pane.add(champMatr);
-        pane.add(btnRecherche);
-        pane.add(btnAjouter);
-
-        zoneAffichageProgrammeurs = new JTextArea(10, 50);
-        scroll = new JScrollPane(zoneAffichageProgrammeurs);
-        pane.add(scroll);
-
-        btnAfficherTous.addActionListener(this);
-        btnRecherche.addActionListener(this);
-        btnAjouter.addActionListener(this);
-
-        this.add(pane); // Ajout du panel à notre frame de base
+    @Override
+    public void display(){
+        
     }
-    
+
     public void displayAfficherTous(){        
         paneAfficher = new JPanel(); // Création d'un panel pour gérer les widgets
         zoneAffichageProgrammeurs = new JTextArea();
@@ -260,6 +172,8 @@ public class Vue extends JFrame implements ActionListener {
         paneGenerique.add(champJourDate_emb);
         paneGenerique.add(comboMoisDate_emb);
         paneGenerique.add(champAnneeDate_emb);
+        
+        this.setLayout(new BorderLayout());
     }
     
     public void displayAjouter(){        
@@ -280,16 +194,21 @@ public class Vue extends JFrame implements ActionListener {
         btnAnnuler.addActionListener(this);        
     }
     
-     public void displaySupprimer(){        
+     public void displaySupprimer(){     
         btnRechercher = new JButton("Rechercher");
         btnReinitialiser = new JButton("Réinitialiser");
         btnValiderEcranSupprimer = new JButton("Valider");
         btnAnnuler = new JButton("Annuler");
         
-        paneGenerique.add(btnRechercher);
-        paneGenerique.add(btnReinitialiser);
-        paneGenerique.add(btnValiderEcranSupprimer);
-        paneGenerique.add(btnAnnuler);
+//        this.getContentPane().add(btnRechercher, BorderLayout.SOUTH);
+//        this.getContentPane().add(btnReinitialiser, BorderLayout.SOUTH);
+//        this.getContentPane().add(btnValiderEcranSupprimer, BorderLayout.SOUTH);
+//        this.getContentPane().add(btnAnnuler, BorderLayout.SOUTH);
+        
+        paneGenerique.add(btnRechercher, BorderLayout.SOUTH);
+        paneGenerique.add(btnReinitialiser, BorderLayout.SOUTH);
+        paneGenerique.add(btnValiderEcranSupprimer, BorderLayout.SOUTH);
+        paneGenerique.add(btnAnnuler, BorderLayout.SOUTH);
        
         labelNom.setEnabled(false);
         champNom.setEnabled(false);

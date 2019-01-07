@@ -48,6 +48,7 @@ public class DataTransac implements ActionsBD{
      * @param req La requête SQL que l'on souhaite exécuter
      * @return rs Une variable de type ResultSet
      */
+    @Override
     public ResultSet getResultSet(String req) {
         try {
             stmt = dbConn.createStatement();
@@ -64,6 +65,7 @@ public class DataTransac implements ActionsBD{
      *
      * @return listeProgrammeurs Une variable de type ArryList
      */
+    @Override
     public ArrayList getProgrammeurs() {
         rs = this.getResultSet(Constantes.SELECT_ALL);
         listeProgrammeurs = new ArrayList<>();
@@ -96,6 +98,7 @@ public class DataTransac implements ActionsBD{
      * @return prog Une variable de type ProgrammeurBean
      *
      */
+    @Override
     public ProgrammeurBean getProgrammeur(String matricule) {
         try {
             pstmt = dbConn.prepareStatement(Constantes.SELECT_UNIQUE);
@@ -126,6 +129,7 @@ public class DataTransac implements ActionsBD{
      * @return listeProg Une variable de type String
      *
      */
+    @Override
     public String afficherProgrammeurs() {
         String listeProg = "";
         listeProgrammeurs = this.getProgrammeurs();
@@ -135,6 +139,7 @@ public class DataTransac implements ActionsBD{
         return listeProg;
     }
     
+    @Override
     public int modifierProgrammeur(String matricule, String nom, String prenom, String adresse, String pseudo, String responsable, String hobby, String Jdate_naiss, String Mdate_naiss, String Adate_naiss, String Jdate_emb, String Mdate_emb, String Adate_emb){
         try {
             String date_naiss = Adate_naiss + "-" + Mdate_naiss + "-" + Jdate_naiss;
@@ -158,6 +163,7 @@ public class DataTransac implements ActionsBD{
         return erreur;
     }
     
+    @Override
     public int supprimerProgrammeur(String matricule){
         try {
             pstmt = dbConn.prepareStatement(Constantes.DELETE_UNIQUE);
@@ -171,6 +177,7 @@ public class DataTransac implements ActionsBD{
         return erreur;
     }
     
+    @Override
     public int ajouterProgrammeur(String matricule, String nom, String prenom, String adresse, String pseudo, String responsable, String hobby, String Jdate_naiss, String Mdate_naiss, String Adate_naiss, String Jdate_emb, String Mdate_emb, String Adate_emb){
         try {
             String date_naiss = Adate_naiss + "-" + Mdate_naiss + "-" + Jdate_naiss;
@@ -198,6 +205,7 @@ public class DataTransac implements ActionsBD{
      * Cette méthode permet de libérer les ressources liées à la base de données
      * *
      */
+    @Override
     public void fermerRessources() {
         if (dbConn != null) {
             try {
