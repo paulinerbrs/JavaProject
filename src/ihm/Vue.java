@@ -165,12 +165,6 @@ public class Vue extends GestionVueAbstraite {
         btnReinitialiser.setEnabled(false);
         btnAnnuler.addActionListener(this);
     }
-
-    /**
-     * Met en place le panel permettant de mettre à jour les données des programmeurs
-     */
-    public void displayGenerique(){        
-    }
     
     /**
      * Met en place le panel permettant d'ajouter des programmeurs
@@ -193,21 +187,15 @@ public class Vue extends GestionVueAbstraite {
     /**
      * Met en place le panel permettant de supprimer les données des programmeurs
      */
-     public void displaySupprimer(){     
+    public void displaySupprimer(){     
         btnRechercher = new JButton("Rechercher");
         btnReinitialiser = new JButton("Réinitialiser");
         btnValiderEcranSupprimer = new JButton("Valider");
-        btnAnnuler = new JButton("Annuler");
-        
-//        this.getContentPane().add(btnRechercher, BorderLayout.SOUTH);
-//        this.getContentPane().add(btnReinitialiser, BorderLayout.SOUTH);
-//        this.getContentPane().add(btnValiderEcranSupprimer, BorderLayout.SOUTH);
-//        this.getContentPane().add(btnAnnuler, BorderLayout.SOUTH);
-        
-        paneGenerique.add(btnRechercher, BorderLayout.SOUTH);
-        paneGenerique.add(btnReinitialiser, BorderLayout.SOUTH);
-        paneGenerique.add(btnValiderEcranSupprimer, BorderLayout.SOUTH);
-        paneGenerique.add(btnAnnuler, BorderLayout.SOUTH);
+        btnAnnuler = new JButton("Annuler");   
+        paneGenerique.add(btnRechercher);
+        paneGenerique.add(btnReinitialiser);
+        paneGenerique.add(btnValiderEcranSupprimer);
+        paneGenerique.add(btnAnnuler);
         labelNom.setEnabled(false);
         champNom.setEnabled(false);
         labelPrenom.setEnabled(false);
@@ -247,7 +235,6 @@ public class Vue extends GestionVueAbstraite {
             this.setContentPane(paneAfficher);
             this.revalidate();
             this.repaint();
-            //récupération des données 
             dt = new DataTransac();
             contenuTextArea = dt.afficherProgrammeurs();
             zoneAffichageProgrammeurs.setText(contenuTextArea);

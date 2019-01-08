@@ -32,9 +32,6 @@ public abstract class GestionVueAbstraite extends JFrame implements ActionListen
     protected JPanel paneGenerique;
     protected int choixPopUp;
     
-    VueAffichage vueA;
-    Vue vueD;
-    
     /**
      * Initialise le menu de l'application
      */
@@ -69,64 +66,8 @@ public abstract class GestionVueAbstraite extends JFrame implements ActionListen
         this.setResizable(false);        
     }
     
-    /*protected void addListener(List<T> list){
-        for(T o : list){
-            o.addActionListener(this);
-        }
-    }
-    protected void addTo(JMenu menu, List<T> list){
-        for(T o : list){
-            menu.add(o);
-        }
-    }*/
-    
     /**
      * Méthode abstraite affichant le panel désiré
      */
     protected abstract void display();
-    
-    /*@Override
-    public void actionPerformed(ActionEvent event){
-        vueA = new VueAffichage();
-        vueD = new Vue();    
-        if(event.getSource() == itemTous){
-            //affichage du nouveau panel           
-            getContentPane().removeAll();
-            vueA.display();
-            vueA.setContentPane(paneAfficher);
-            vueA.revalidate();
-            vueA.repaint();
-            //récupération des données 
-            dt = new DataTransac();
-            contenuTextArea = dt.afficherProgrammeurs();
-            zoneAffichageProgrammeurs.setText(contenuTextArea);
-            dt.fermerRessources();   
-        } else if (event.getSource() == itemModifier){
-            getContentPane().removeAll();
-            vueD.displayGenerique();
-            vueD.displayModifier();
-            this.setContentPane(paneGenerique);
-            this.revalidate();
-            this.repaint();
-        } else if (event.getSource() == itemSupprimer){
-            getContentPane().removeAll();
-            vueD.displayGenerique();
-            vueD.displaySupprimer();
-            this.setContentPane(paneGenerique);
-            this.revalidate();
-            this.repaint();  
-        } else if (event.getSource() == itemAjouter){
-            getContentPane().removeAll();
-            vueD.displayGenerique();
-            vueD.displayAjouter();
-            this.setContentPane(paneGenerique);
-            this.revalidate();
-            this.repaint();  
-        } else if (event.getSource() == itemQuitter){
-            choixPopUp = JOptionPane.showConfirmDialog(this,"Vérification", "Voulez-vous vraiment quitter?", JOptionPane.YES_NO_OPTION);
-            if (choixPopUp == JOptionPane.YES_OPTION){
-                System.exit(0);
-            }
-        }
-    }*/
 }
