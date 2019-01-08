@@ -2,6 +2,10 @@ package ihm;
 
 import data.DataTransac;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JMenu;
@@ -9,6 +13,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * Classe abstraite contenant la signature des méthodes liées à la gestion de la vue
@@ -36,6 +42,11 @@ public abstract class GestionVueAbstraite extends JFrame implements ActionListen
      * Initialise le menu de l'application
      */
     protected void init(){ 
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Vue.class.getName()).log(Level.SEVERE, null, ex);
+        }
         menuBar = new JMenuBar();
         menuProgrammeur = new JMenu("Programmeur");
         menuAfficher = new JMenu("Afficher");
@@ -64,6 +75,27 @@ public abstract class GestionVueAbstraite extends JFrame implements ActionListen
         this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Fermeture fenêtre = arrêt de l'application 
         this.setBounds(10, 10, 600, 300);
         this.setResizable(false);        
+    }
+          
+    /**
+     * Ajoute les labels et champs de la liste passée en paramètre au panel
+     * @param panel Panel sur lequel on ajoute les éléments de la liste
+     * @param list  Liste des labels et champs à ajouter au panel
+     */
+    public void addTo(JPanel panel, List<JComponent> list){
+        for(JComponent component : list){
+            panel.add(component);
+        }
+    }
+    
+    /**
+     * Disable les labels et champs de la liste passée en paramètre
+     * @param list  Liste des éléments à 
+     */
+    public void disableAll(List<JComponent> list){
+        for(JComponent component : list){
+            component.setEnabled(false);
+        }
     }
     
     /**
