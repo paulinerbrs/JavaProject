@@ -1,5 +1,6 @@
 package ihm;
 
+import data.DataTransac;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -9,11 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import data.DataTransac;
 import data.ProgrammeurBean;
-import java.awt.BorderLayout;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import javax.swing.JComponent;
 
 /**
  * Classe gérant la vue de la mise à jour des données des programmeurs 
@@ -53,6 +55,36 @@ public class Vue extends GestionVueAbstraite {
     private JTextField champJourDate_emb;
     private JComboBox comboMoisDate_emb;
     private JTextField champAnneeDate_emb;
+    private List<JComponent> listComponents;
+    
+    /**
+     * Ajoute les clabels et champs du panel à la liste listComponents
+     */
+    public void addToList(){
+        listComponents = new ArrayList<JComponent>();
+        listComponents.add(labelMatricule);
+        listComponents.add(champMatricule);
+        listComponents.add(labelNom);
+        listComponents.add(champNom);
+        listComponents.add(labelPrenom);
+        listComponents.add(champPrenom);
+        listComponents.add(labelAdresse);
+        listComponents.add(champAdresse);
+        listComponents.add(labelPseudo);
+        listComponents.add(champPseudo);
+        listComponents.add(labelResponsable);
+        listComponents.add(champResponsable);
+        listComponents.add(labelHobby);
+        listComponents.add(champHobby);
+        listComponents.add(labelDate_naiss);
+        listComponents.add(champJourDate_naiss);
+        listComponents.add(comboMoisDate_naiss);
+        listComponents.add(champAnneeDate_naiss);
+        listComponents.add(labelDate_emb);
+        listComponents.add(champJourDate_emb);
+        listComponents.add(comboMoisDate_emb);
+        listComponents.add(champAnneeDate_emb);
+    }
     
     /**
      * Met en place le panel permettant de mettre à jour les données des programmeurs
@@ -62,61 +94,66 @@ public class Vue extends GestionVueAbstraite {
         paneGenerique = new JPanel(); 
         labelMatricule = new JLabel("Matricule");
         champMatricule = new JTextField();
-        champMatricule.setColumns(10);
         labelNom = new JLabel("Nom");
         champNom = new JTextField();
-        champNom.setColumns(10);
         labelPrenom = new JLabel("Prénom");
         champPrenom = new JTextField();
-        champPrenom.setColumns(10);
         labelAdresse = new JLabel("Adresse");
         champAdresse = new JTextField();
-        champAdresse.setColumns(10);
         labelPseudo = new JLabel("Pseudo");
         champPseudo = new JTextField();
-        champPseudo.setColumns(10);
         labelResponsable = new JLabel("Responsable");
         champResponsable = new JTextField();
-        champResponsable.setColumns(10);
         labelHobby = new JLabel("Hobby");
         champHobby = new JTextField();
-        champHobby.setColumns(10);
         labelDate_naiss = new JLabel("Date de naissance");
         champJourDate_naiss = new JTextField();
-        champJourDate_naiss.setColumns(10);
         Object[] mois = new Object[]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
         comboMoisDate_naiss = new JComboBox(mois);
         champAnneeDate_naiss = new JTextField();
-        champAnneeDate_naiss.setColumns(10);
         labelDate_emb = new JLabel("Date d'embauche");
         champJourDate_emb = new JTextField();
-        champJourDate_emb.setColumns(10);
         comboMoisDate_emb = new JComboBox(mois);
         champAnneeDate_emb = new JTextField();
-        champAnneeDate_emb.setColumns(10);
-        paneGenerique.add(labelMatricule);
-        paneGenerique.add(champMatricule);
-        paneGenerique.add(labelNom);
-        paneGenerique.add(champNom);
-        paneGenerique.add(labelPrenom);
-        paneGenerique.add(champPrenom);
-        paneGenerique.add(labelAdresse);
-        paneGenerique.add(champAdresse);
-        paneGenerique.add(labelPseudo);
-        paneGenerique.add(champPseudo);
-        paneGenerique.add(labelResponsable);
-        paneGenerique.add(champResponsable);
-        paneGenerique.add(labelHobby);
-        paneGenerique.add(champHobby);
-        paneGenerique.add(labelDate_naiss);
-        paneGenerique.add(champJourDate_naiss);
-        paneGenerique.add(comboMoisDate_naiss);
-        paneGenerique.add(champAnneeDate_naiss);
-        paneGenerique.add(labelDate_emb);
-        paneGenerique.add(champJourDate_emb);
-        paneGenerique.add(comboMoisDate_emb);
-        paneGenerique.add(champAnneeDate_emb);
-        this.setLayout(new BorderLayout());
+        addToList();
+        addTo(paneGenerique, listComponents);
+        paneGenerique.setLayout(null);
+        setFieldBounds(labelMatricule, 10, 10, 80);
+        setFieldBounds(champMatricule, 70, 10, 100);
+        setFieldBounds(labelNom, 40, 60, 80);
+        setFieldBounds(champNom, 140, 60, 100);
+        setFieldBounds(labelPrenom, 260, 60, 80);
+        setFieldBounds(champPrenom, 390, 60, 100);
+        setFieldBounds(labelAdresse, 40, 90, 80);
+        setFieldBounds(champAdresse, 140, 90, 100);
+        setFieldBounds(labelPseudo, 260, 90, 80);
+        setFieldBounds(champPseudo, 390, 90, 100);
+        setFieldBounds(labelResponsable, 40, 120, 80);
+        setFieldBounds(champResponsable, 140, 120, 100);
+        setFieldBounds(labelDate_naiss, 260, 120, 100);
+        setFieldBounds(champJourDate_naiss, 390, 120, 100);
+        setFieldBounds(labelHobby, 40, 150, 80);
+        setFieldBounds(champHobby, 140, 150, 100);
+        setFieldBounds(labelDate_emb, 260, 150, 120);
+        setFieldBounds(champJourDate_emb, 390, 150, 100);
+    }
+    
+    /**
+     * Préconfigure le setBounds d'un label ou champ du panel
+     * @param x
+     * @param y
+     * @param width
+     */
+    public void setFieldBounds(JComponent component, int x, int y, int width){
+        component.setBounds(x, y, width, 20);
+    }
+    
+    /**
+     * Préconfigure le setBounds d'un bouton du panel
+     * @param x
+     */
+    public void setButtonBounds(JButton button, int x){
+        button.setBounds(x, 200, 100, 30);
     }
 
     /**
@@ -145,7 +182,11 @@ public class Vue extends GestionVueAbstraite {
         btnRechercher.addActionListener(this);
         btnAnnuler.addActionListener(this);
         btnReinitialiser.setEnabled(false);
-        btnValiderEcranModifier.setEnabled(false);
+        btnValiderEcranModifier.setEnabled(false);        
+        setButtonBounds(btnRechercher, 70); 
+        setButtonBounds(btnReinitialiser, 175); 
+        setButtonBounds(btnValiderEcranModifier, 280); 
+        setButtonBounds(btnAnnuler, 385); 
     }
 
     /**
@@ -163,7 +204,11 @@ public class Vue extends GestionVueAbstraite {
         btnRechercher.addActionListener(this);
         btnValiderEcranModifier.addActionListener(this);
         btnReinitialiser.setEnabled(false);
-        btnAnnuler.addActionListener(this);
+        btnAnnuler.addActionListener(this);        
+        setButtonBounds(btnRechercher, 70); 
+        setButtonBounds(btnReinitialiser, 175); 
+        setButtonBounds(btnValiderEcranModifier, 280); 
+        setButtonBounds(btnAnnuler, 385); 
     }
     
     /**
@@ -181,7 +226,11 @@ public class Vue extends GestionVueAbstraite {
         btnRechercher.setEnabled(false);
         btnReinitialiser.addActionListener(this);
         btnValiderEcranAjouter.addActionListener(this);
-        btnAnnuler.addActionListener(this);        
+        btnAnnuler.addActionListener(this);           
+        setButtonBounds(btnRechercher, 70); 
+        setButtonBounds(btnReinitialiser, 175); 
+        setButtonBounds(btnValiderEcranAjouter, 280); 
+        setButtonBounds(btnAnnuler, 385); 
     }
     
     /**
@@ -196,30 +245,16 @@ public class Vue extends GestionVueAbstraite {
         paneGenerique.add(btnReinitialiser);
         paneGenerique.add(btnValiderEcranSupprimer);
         paneGenerique.add(btnAnnuler);
-        labelNom.setEnabled(false);
-        champNom.setEnabled(false);
-        labelPrenom.setEnabled(false);
-        champPrenom.setEnabled(false);
-        labelAdresse.setEnabled(false);
-        champAdresse.setEnabled(false);
-        labelPseudo.setEnabled(false);
-        champPseudo.setEnabled(false);
-        labelResponsable.setEnabled(false);
-        champResponsable.setEnabled(false);
-        labelHobby.setEnabled(false);
-        champHobby.setEnabled(false);
-        labelDate_naiss.setEnabled(false);
-        champJourDate_naiss.setEnabled(false);
-        comboMoisDate_naiss.setEnabled(false);
-        champAnneeDate_naiss.setEnabled(false);
-        labelDate_emb.setEnabled(false);
-        champJourDate_emb.setEnabled(false);
-        comboMoisDate_emb.setEnabled(false);
-        champAnneeDate_emb.setEnabled(false);
-        btnRechercher.setEnabled(false);
-        btnReinitialiser.setEnabled(false);
+        addToList();
+        disableAll(listComponents);
+        labelMatricule.setEnabled(true);
+        champMatricule.setEnabled(true);
         btnValiderEcranSupprimer.addActionListener(this);
-        btnAnnuler.addActionListener(this);
+        btnAnnuler.addActionListener(this);                 
+        setButtonBounds(btnRechercher, 70); 
+        setButtonBounds(btnReinitialiser, 175); 
+        setButtonBounds(btnValiderEcranSupprimer, 280); 
+        setButtonBounds(btnAnnuler, 385); 
     }
     
     /**
